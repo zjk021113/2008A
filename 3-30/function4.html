@@ -8,10 +8,15 @@
 </head>
 <body>
     <script>
-        var f=function(){}
-        var f=new f()
-        Object.getPrototypeOf(f)===f.Object
-
+       var a={
+           print:function(){
+               console.log('hello')
+           }
+       }
+       var b=Object.create(a)
+       Object.getPrototypeOf(b)===a
+       b.print()
+       b,print===a.print
     </script>
 </body>
 </html>
