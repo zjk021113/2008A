@@ -43,4 +43,52 @@
     log('hello')
     log('hello','china')
     log('hello','')
+
+
+    // let obj1={
+    //     name:"张三",
+    //     age:22,
+    //     sex:"x",
+    //     email:"zhangsan@qq.com"
+    // }
+    // let obj2={
+    //     name:"zhnagsan",
+    //     sex:"m",
+    //     age:23
+    // }
+    // for(k in obj2)
+    // console.log(obj1,obj2)
+    // console.log(obj1,obj2)
+
+    // var f=function(){
+    //     console.log(1)
+    // }
+    // function f(){
+    //     console.log(2)
+    // }
+    // f()
+ 
+    let obj1={
+        name:"zhangsan",
+        age:22,
+        get name(){
+            console.log("正在读取name属性")
+        },
+        set name(v){
+            console.log("新值为 :",v)
+           
+        }
+    }
+    obj1.name
+    obj1.name="wnagwu"      
+
+    let person={
+        name:"zhangsan",
+        age:22,
+        sex:"M"
+    }
+    console.log(person)
+
+        let p1={...person,sex:"男"}
+        console.log(p1)
 </script>
