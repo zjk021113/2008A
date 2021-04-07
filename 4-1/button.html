@@ -68,27 +68,47 @@
     // }
     // f()
  
-    let obj1={
-        name:"zhangsan",
-        age:22,
-        get name(){
-            console.log("正在读取name属性")
-        },
-        set name(v){
-            console.log("新值为 :",v)
+    // let obj1={
+    //     name:"zhangsan",
+    //     age:22,
+    //     get name(){
+    //         console.log("正在读取name属性")
+    //     },
+    //     set name(v){
+    //         console.log("新值为 :",v)
            
-        }
-    }
-    obj1.name
-    obj1.name="wnagwu"      
+    //     }
+    // }
+    // obj1.name
+    // obj1.name="wnagwu"      
 
-    let person={
-        name:"zhangsan",
-        age:22,
-        sex:"M"
-    }
-    console.log(person)
+    // let person={
+    //     name:"zhangsan",
+    //     age:22,
+    //     sex:"M"
+    // }
+    // console.log(person)
 
-        let p1={...person,sex:"男"}
-        console.log(p1)
+    //     let p1={...person,sex:"男"}
+    //     console.log(p1)
+    //     let obj={
+    //         ["h"+'ello'](){
+    //             return 'hi'
+    //         }
+    //     }
+    //     console.log(obj.hello)
+
+
+
+  class Person{
+      constructor(name,age){
+          this.name=name
+          this.age=age
+      }
+      say(){
+          console.log(this.name,this.age)
+      }
+  }
+  let p1 = new Person("wnagwu",33)
+  p1.say()
 </script>
