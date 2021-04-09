@@ -35,18 +35,14 @@
                console.log("第三位密码",c)
            }
        })
-       return new Promise(function(resolve,reject){
        $.ajax({
            url:"http://vue.api.comcto.com/api/password4.php",
            method:"get",
            dataType:"",
-           success:function(data){
-               resolve("第四位密码",data)
+           success:function(d){
+               console.log("第四位密码",d)
            }
-       }) 
-    }).then(function(d){
-        console.log(d)
-    })
+       })
     </script>
 </body>
 </html>
