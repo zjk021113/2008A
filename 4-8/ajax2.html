@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery.js"></script>
+</head>
+<body>
+    <script>
+        new Promise(function(resolve,reject){
+            $.ajax({
+                url:"http://vue.api.comcto.com/api/password1.php",
+                method:"get",
+                dataType:"",
+                success:function(data){
+                    resolve(data)
+                }
+            })
+        }).then(function(d){
+            console.log("第一位密码",d)
+            return new Promise(function(resolve,reject){
+                $.ajax({
+                    url:"http://vue.api.comcto.com/api/password2.php",
+                    method:"get",
+                    dataType:"",
+                    success:function(d){
+                        resolve(d)
+                    }
+                })
+            })
+        }).then(function(d){
+            console.log("第二位密码",d)
+            return new Promise(function(resolve,reject){
+                $.ajax({
+                    url:"http://vue.api.comcto.com/api/password3.php",
+                    method:"get",
+                    dataType:"",
+                    success:function(d){
+                        resolve(d)
+                    }
+                })
+            })
+        }).then(function(d){
+            console.log("第三位密码",d)
+            return new Promise(function(resolve,reject){
+                $.ajax({
+                    url:"http://vue.api.comcto.com/api/password4.php",
+                    method:"get",
+                    dataType:"",
+                    success:function(data){
+                        resolve(data)
+                    }
+                })
+            })
+        }).then(function(d){
+            console.log("第四位密码",d)
+        })
+    </script>
+</body>
+</html>
