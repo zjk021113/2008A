@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //    obj1={
+    //         name:"张三",
+    //         age:22,
+    //         sex:"male"
+    //     }
+
+    //     for(let k in obj1){
+    //         console.log(k)
+    //     }
+    //    function *it(){
+    //        const keys=Object.keys(this)
+    //        for(let k of keys){
+    //            yield k
+    //        }
+    //    }
+    //    Object.prototype[Symbol.iterator]=it
+    //    for (let k of obj1){
+    //        console.log(k,obj1[k])
+    //    }
+
+
+    // function * foo(){
+    //     yield 1;
+    //     yield 2;
+    //     yield 3;
+    //     yield 4;
+    //     return 5;
+    // }
+
+    // for(let v of foo()){
+    //     console.log(v)
+    // }
+
+    function * fibonacci(){
+        let [prev,curr]=[0,1];
+        for (;;){
+            yield curr;
+            [prev,curr]=[curr,prev+curr]
+        }
+    }
+    for (let n of fibonacci()){
+        if(n>1000)break;
+        console.log(n)
+    }
+    </script>
+</body>
+</html>
