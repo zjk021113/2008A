@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../axios.min.js"></script>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="getlist">Axion获取数据</button>
+        <ul>
+            <li v-for="item in stu">
+                ID:{{item.id}} - name:{{item.name}} - sex:{{item.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:{
+            stu:[]   //默认值 
+        },
+        methods:{
+            getlist(){
+                const self=this
+                axios.get("http://vue.api.comcto.com/api/list.php").then(function(d){
+                    console.log(d)
+                    self.stu=d.data
+                })
+            }
+        }
+    })
+</script>
