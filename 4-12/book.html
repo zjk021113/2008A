@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../axios.min.js"></script>
+    <script src="../vue.js"></script>
+    <style>
+        *{
+            margin: auto 0;
+            padding: auto 0;
+        }
+        h3{
+            text-align: center;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+        }
+        p1{
+            text-align: center;
+        }
+    </style><style type="text/css">
+    .grid {
+      margin: auto;
+      width: 530px;
+      text-align: center;
+    }
+    .grid table {
+      border-top: 1px solid #C2D89A;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .grid th,td {
+      padding: 10;
+      border: 1px dashed #F3DCAB;
+      height: 35px;
+      line-height: 35px;
+    }
+    .grid th {
+      background-color: #F3DCAB;
+    }
+    .grid .book {
+      padding-bottom: 10px;
+      padding-top: 5px;
+      background-color: #F3DCAB;
+    }
+  </style>
+</head>
+<body>
+    <div id="app">
+        <div class="grid">
+          <div>
+            <h1>图书管理</h1>
+            <!-- <button @click="del(index)">删除</button> -->
+            <div class="book">
+              <div>
+                <label for="id">
+                  编号：
+                </label>
+                <input type="text" id="id" v-model='id'>
+                <label for="name">
+                  名称：
+                </label>
+                <input type="text" id="name" v-model='name'>
+                <button @click='add'>提交</button>
+              </div>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr :key='item.id' v-for='(item,index) in books'>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.time}}</td>
+                <td>
+                  <a href="" @click.prevent>修改</a>
+                  <span>|</span>
+                  <a href="" @click.prevent="del(index)">删除</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+</body>
+</html>
+<script>
+  const url="http://vue.api.comcto.com/api/books.php"
+     new Vue({
+      el: '#app',
+      data: {
+        id: '',
+        name: '',
+        books:[],
+      },
+      methods:{
+        // 添加数据
+        add(){
+          // console.log(this.id,this.name)
+          let now=new Date()
+          let y=now.getFullYear()
+          let m=now.getMonth()
+          let d=now.getDate()
+          let ymd=`${y}-${m+1}-${d}`
+          let new_book={id:this.id,name:this.name,time:ymd}
+          this.books.push(new_book)
+          console.log("添加");
+        },
+
+        // 删除数据
+        del(index){
+          console.log("删除")
+          this.books.splice(index,1)
+          // this.books.pop()
+        }
+      },
+
+
+
+      created(){
+        var set_the=this
+        axios.get(url).then(function(response){
+          set_the.books=response.data
+        })
+      },
+      
+
+
+
+
+
+
+
+
+
+      // watch:{
+      //       id:function (a1,b1) {
+      //           return a1;
+      //       },
+      //       name:function (a2,b2) {
+      //           return a2;
+      //       }
+      //   },
+      //   methods:{
+      //     handle(){
+      //         let a3=this;
+      //         console.log(this.name)
+      //         if(this.name=='' && this.id==''){
+
+      //         }else if (this.id==''){
+      //             c=axios.get("http://vue.api.comcto.com/api/books.php?name="+this.name).then(function (b3) {
+      //                 for (let i in b3.data) {
+      //                     // console.log(b3.data[i].name)
+      //                     //   console.log(a3)
+      //                     if (b3.data[i].name == a3.name || b3.data[i].id==a3.id) {
+      //                         let a4={
+      //                             id:b3.data[i].id,
+      //                             name:b3.data[i].name,
+      //                             date:b3.data[i].time,
+      //                         };
+      //                         a3.books.push(a4)
+      //                     }
+      //                 }
+      //             })
+      //         } else if (this.name==''){
+      //             c=axios.get("http://vue.api.comcto.com/api/books.php?id="+this.id).then(function (b3) {
+      //                 for (let i in b3.data) {
+      //                     // console.log(b3.data[i].name)
+      //                     //   console.log(a3)
+      //                     if (b3.data[i].name == a3.name || b3.data[i].id==a3.id) {
+      //                         let a4={
+      //                             id:b3.data[i].id,
+      //                             name:b3.data[i].name,
+      //                             date:b3.data[i].time,
+      //                         };
+      //                         a3.books.push(a4)
+      //                     }
+      //                 }
+      //             })
+      //         }else{
+      //             c=axios.get("http://vue.api.comcto.com/api/books.php?name="+this.name+"&id="+this.id).then(function (b3) {
+      //                 for (let i in b3.data) {
+      //                     // console.log(b3.data[i].name)
+      //                     //   console.log(a3)
+      //                     if (b3.data[i].name == a3.name || b3.data[i].id==a3.id) {
+      //                         let a4={
+      //                             id:b3.data[i].id,
+      //                             name:b3.data[i].name,
+      //                             date:b3.data[i].time,
+      //                         };
+      //                         a3.books.push(a4)
+      //                     }
+      //                 }
+      //             })
+      //         }
+
+
+      //       // c5=function(c511){
+      //       //        c51=c511
+      //       //     // console.log(c51)
+      //       // }
+      //       // console.log(c51)
+
+      //     }
+          
+      //   },
+      });
+</script>
