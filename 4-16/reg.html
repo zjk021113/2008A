@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a href="" v-on:click.prevent="login">登录</a>
+        <a href="" v-on:click.prevent="reg">注册</a>
+
+        <!-- 创建新的模块 -->
+        <user-login v-if="ifloginshow"></user-login>
+        <user-reg v-if="ifregshow"></user-reg>
+    </div>
+</body>
+</html>
+<script>
+    Vue.component("user-login",{
+        template:"<h1>登录</h1>"
+    })
+    Vue.component("user-reg",{
+        template:"<h2>注册</h2>"
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            ifloginshow:false,
+            ifregshow:false
+        },
+        methods:{
+            login(){
+                 this.ifloginshow=true
+                this.ifregshow=false
+            },
+            reg(){
+                this.ifregshow=true
+                this.ifloginshow=false 
+            }
+        }
+    })
+</script>
